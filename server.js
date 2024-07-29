@@ -6,7 +6,7 @@ let db
 const url = ''
 new MongoClient(url).connect().then((client)=>{
   console.log('DB연결성공')
-  db = client.db('')
+  db = client.db('todolist_express')
 }).catch((err)=>{
   console.log(err)
 })
@@ -17,6 +17,10 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Test')
+  res.send('Test')
 })
 
+app.get('/list', async (req, res) => {
+  let result = await db.collection('list').find().toArray()
+  console.log(result)
+})
