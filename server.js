@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const { MongoClient } = require('mongodb')
 
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 let db
 const url = ''
 new MongoClient(url).connect().then((client)=>{
@@ -16,11 +19,28 @@ app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
-app.get('/', (req, res) => {
-  res.send('Test')
-})
-
+//조회
 app.get('/list', async (req, res) => {
   let result = await db.collection('list').find().toArray()
   console.log(result)
+})
+
+//추가
+app.get('/write', async (req, res) => {
+  res.sendFile(__dirname + '/index.html')
+})
+
+app.post('/add', async (req, res) => {
+  try{
+    if(req.body.content==''){
+      res.send('내용을 입력하지 않았습니다.')
+    }
+    else{
+      await db.collection('list').insertOne({content : req.body.content})
+      res.redirect('/list')
+    }
+  }
+  catch(e){
+    res.status(500).send('Server error')
+  }
 })
