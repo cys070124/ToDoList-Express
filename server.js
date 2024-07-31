@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const { MongoClient } = require('mongodb')
 
+app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
@@ -22,14 +24,10 @@ app.listen(PORT, () => {
 //조회
 app.get('/list', async (req, res) => {
   let result = await db.collection('list').find().toArray()
-  console.log(result)
+  res.render('index.ejs', { posts : result })
 })
 
 //추가
-app.get('/write', async (req, res) => {
-  res.sendFile(__dirname + '/index.html')
-})
-
 app.post('/add', async (req, res) => {
   try{
     if(req.body.content==''){
