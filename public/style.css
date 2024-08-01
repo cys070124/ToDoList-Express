@@ -1,0 +1,40 @@
+header{
+    text-align: center;
+}
+
+input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    width: 600px;
+}
+
+button{
+    padding: 0.7rem 1rem;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+div.list {
+    background: #f9f9f9;
+    padding: 0.75rem;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+div.list h3 {
+    margin: 0;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}

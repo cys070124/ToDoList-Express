@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -11,13 +12,13 @@
     </header>
     <div>
         <form action="/add" method="post">
-            <input type="text" name="content" id="content">
+            <input type="text" name="content" id="content" placeholder="할 일을 입력하세요">
             <button type="submit">확인</button>
         </form>
     </div>
     <div>
         <% for(let i=0; i<posts.length; i++){ %>
-            <div>
+            <div class="list">
                 <h3><%= posts[i].content %></h3>
             </div>
         <% } %>

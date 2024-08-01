@@ -42,3 +42,7 @@ app.post('/add', async (req, res) => {
     res.status(500).send('Server error')
   }
 })
+
+app.get('/detail/:id', () => {
+
+})
