@@ -42,13 +42,7 @@ app.post('/add', async (req, res) => {
     res.status(500).send('Server error')
   }
 })
-/*
-app.get('/detail/:id', async (req, res) => {
-  let result = await db.collection('list').findOne({_id : new ObjectId(req.params.id)}) 
-  console.log(result)
-  res.render('detail.ejs')
-})
-*/
+
 //삭제
 app.get('/delete/:id', async (req, res) => {
   let result = await db.collection('list').deleteOne({_id : new ObjectId(req.params.id)})
